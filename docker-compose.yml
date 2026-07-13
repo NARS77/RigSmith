@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: rig_postgres_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=rigsmith_db
+      - POSTGRES_USER=rig_user
+      - POSTGRES_PASSWORD=rig_secure_pass
+    expose:
+      - 5432
+    restart: always
+
+  backend:
+    build: ./backend
+    container_name: rig_django_backend
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py seed_live_parts &&
+             gunicorn pc_rig_project.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - SECRET_KEY=django-production-secret-key-rigsmith-1234567890
+      - DEBUG=False
+      - ALLOWED_HOSTS=*
+      - DATABASE_URL=postgres://rig_user:rig_secure_pass@db:5432/rigsmith_db
+      - CORS_ALLOW_ALL=True
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8000/api
+    container_name: rig_vite_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  postgres_data:
