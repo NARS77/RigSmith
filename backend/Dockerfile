@@ -25,4 +25,4 @@ COPY . /app/
 EXPOSE 8000
 
 # Start command
-CMD ["gunicorn", "pc_rig_project.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py seed_parts && gunicorn pc_rig_project.wsgi:application --bind 0.0.0.0:8000"]
