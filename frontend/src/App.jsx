@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { BuildContext } from './context/BuildContext';
 
+const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
+
 // Custom inline SVG icons for visual excellence
 const CpuIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">

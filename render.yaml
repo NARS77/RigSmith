@@ -1,0 +1,37 @@
+# Render Blueprint — Auto-configure services on Render
+# See: https://docs.render.com/blueprint-spec
+
+services:
+  # Django Backend API
+  - type: web
+    name: rigsmith-api
+    runtime: python
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn pc_rig_project.wsgi:application --bind 0.0.0.0:$PORT"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com"
+      - key: CORS_ALLOW_ALL
+        value: "False"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://rigsmith.vercel.app,https://rig-smith.vercel.app"
+      - key: PYTHON_VERSION
+        value: "3.12.0"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rigsmith-db
+          property: connectionString
+
+databases:
+  - name: rigsmith-db
+    plan: free
+    region: oregon
+    databaseName: rigsmith
+    user: rigsmith_user
