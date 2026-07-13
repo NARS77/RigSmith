@@ -270,7 +270,7 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Buttons with Snappy Scale and Transitions */
+/* Buttons with Stable Transitions */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -283,17 +283,35 @@ body {
   font-weight: 600;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
   user-select: none;
 }
 
 .btn:hover {
-  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-sm);
 }
 
-.btn:active {
-  transform: translateY(1px) scale(0.97);
+.slot-card {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+  background: #ffffff;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
 }
+
+.slot-card:hover {
+  border-color: var(--panel-hover-border);
+  box-shadow: var(--shadow-md);
+}
+
+
+
 
 .btn-primary {
   background: var(--primary);
@@ -410,10 +428,7 @@ body {
   position: relative;
 }
 
-.slot-card:hover {
-  transform: translateY(-2px) scale(1.005);
-  box-shadow: var(--shadow-md);
-}
+
 
 /* Dynamic color borders matching component categories */
 .slot-card.cpu { border-left: 4px solid var(--cpu-color); }

@@ -108,6 +108,56 @@ const CloseIcon = () => (
   </svg>
 );
 
+const SaveIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" className="rule-icon success">
+    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+    <polyline points="17 21 17 13 7 13 7 21"/>
+    <polyline points="7 3 7 8 15 8"/>
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+  </svg>
+);
+
+const SparklesIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18" className="rule-icon success">
+    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.314 11.314l.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
+  </svg>
+);
+
+const TrendingUpIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
+    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+    <polyline points="17 6 23 6 23 12"/>
+  </svg>
+);
+
+const BellIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9zm-9.73 13a3 3 0 0 0 5.46 0"/>
+  </svg>
+);
+
+const CircleCheckIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="16" height="16" className="rule-icon success">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+    <polyline points="22 4 12 14.01 9 11.01"/>
+  </svg>
+);
+
+const ServerIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="rule-icon success">
+    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+    <line x1="6" y1="6" x2="6.01" y2="6"/>
+    <line x1="6" y1="18" x2="6.01" y2="18"/>
+  </svg>
+);
+
 function App() {
   const {
     catalog,
@@ -1750,7 +1800,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           <div className="glass-panel stat-card green">
             <span className="stat-card-label">Total Commission Referred</span>
             <span className="stat-card-value">${total_commission.toFixed(2)}</span>
-            <span className="stat-card-detail" style={{ color: 'var(--success)' }}>💸 2% Fixed rate applied</span>
+            <span className="stat-card-detail" style={{ color: 'var(--success)' }}>2% Fixed rate applied</span>
           </div>
 
           <div className="glass-panel stat-card">
@@ -2599,7 +2649,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                     {/* Price Alert Form */}
                     <div className="alert-section">
                       <div className="alert-title">
-                        🔔 Set Price Drop Notification
+                        <BellIcon /> Set Price Drop Notification
                       </div>
                       
                       {alertSuccess ? (
@@ -3036,12 +3086,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           {/* Prebuilt Systems Suggestion panel */}
           <div className="glass-panel prebuilt-panel">
             <h2 className="sidebar-title">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="rule-icon success">
-                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-                <line x1="6" y1="6" x2="6.01" y2="6"/>
-                <line x1="6" y1="18" x2="6.01" y2="18"/>
-              </svg>
+              <ServerIcon />
               Prebuilt Alternatives
             </h2>
 
@@ -3066,9 +3111,9 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                         <span className="part-select-price">${pc.price}</span>
                       </div>
                       <div className="part-select-specs" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
-                        <span>🖥️ <strong>CPU:</strong> {pc.cpu_details}</span>
-                        <span>🎮 <strong>GPU:</strong> {pc.gpu_details}</span>
-                        <span>⚡ <strong>RAM:</strong> {pc.ram_details}</span>
+                        <span><strong>CPU:</strong> {pc.cpu_details}</span>
+                        <span><strong>GPU:</strong> {pc.gpu_details}</span>
+                        <span><strong>RAM:</strong> {pc.ram_details}</span>
                       </div>
                       {pc.affiliate_url && (
                         <a 
@@ -3156,7 +3201,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                           {build.name}
                         </h3>
                         <span className="showcase-author-badge">
-                          👤 Creator: <strong style={{ color: 'var(--primary)' }}>{build.username || 'Guest'}</strong>
+                          <UserIcon /> Creator: <strong style={{ color: 'var(--primary)' }}>{build.username || 'Guest'}</strong>
                         </span>
                       </div>
                       <div className="part-select-price">
@@ -3212,7 +3257,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                           setActiveTab('builder');
                         }}
                       >
-                        ⚡ Load in Builder
+                        Load in Builder
                       </button>
                       
                       {isOwner && (
@@ -3225,7 +3270,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                             }
                           }}
                         >
-                          🗑️
+                          <TrashIcon />
                         </button>
                       )}
                     </div>
@@ -3243,7 +3288,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           <div className="modal-content" style={{ maxWidth: '500px', border: '1px solid #ffd700' }} onClick={(e) => e.stopPropagation()}>
             <div className="modal-header" style={{ borderBottom: '1px solid rgba(255, 215, 0, 0.2)' }}>
               <h3 className="modal-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#d97706' }}>
-                ⭐ Upgrade to Rigsmith Pro
+                Upgrade to Rigsmith Pro
               </h3>
               <button className="btn-icon" onClick={() => setProModalOpen(false)}><CloseIcon /></button>
             </div>
@@ -3257,16 +3302,16 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span>🚀</span> <strong>Unlimited Build Slots</strong> (Free tier limited to 3 saves)
+                    <span><SparklesIcon /></span> <strong>Unlimited Build Slots</strong> (Free tier limited to 3 saves)
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span>🏆</span> <strong>Shining Golden PRO Badge</strong> next to your username
+                    <span><SparklesIcon /></span> <strong>Shining Golden PRO Badge</strong> next to your username
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span>⚡</span> <strong>Priority Compatibility Engine</strong> validation
+                    <span><SparklesIcon /></span> <strong>Priority Compatibility Engine</strong> validation
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span>📈</span> <strong>Affiliate Sales Analytics</strong> & system pricing trackers
+                    <span><TrendingUpIcon /></span> <strong>Affiliate Sales Analytics</strong> & system pricing trackers
                   </div>
                 </div>
               </div>
@@ -3278,7 +3323,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   $19.99<span style={{ fontSize: '1rem', fontWeight: 400, color: 'var(--text-secondary)' }}> / year</span>
                 </span>
                 <span style={{ fontSize: '0.75rem', color: 'var(--success)', fontWeight: 500 }}>
-                  ✓ 7-Day Money-Back Guarantee
+                  <CircleCheckIcon /> 7-Day Money-Back Guarantee
                 </span>
               </div>
 
@@ -3376,7 +3421,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   {payingPro ? (
                     <div className="spinner" style={{ width: '18px', height: '18px', borderWidth: '2px', borderColor: '#000 transparent transparent transparent' }}></div>
                   ) : (
-                    '🚀 Activate Rigsmith Pro Account'
+                    'Activate Rigsmith Pro Account'
                   )}
                 </button>
 
