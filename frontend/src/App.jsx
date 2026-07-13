@@ -869,16 +869,16 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           boxShadow: '0 4px 6px -1px rgba(0,0,0,0.03), 0 10px 15px -3px rgba(0,0,0,0.02)'
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--panel-border)', paddingBottom: '0.75rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" style={{ color: 'var(--primary)' }}>
+        <div className="blueprint-header">
+          <div className="blueprint-title-group">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="rule-icon success">
               <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" strokeWidth="1.5" />
               <path d="M12 16L12 8" strokeWidth="1.5" />
               <path d="M8 12L16 12" strokeWidth="1.5" />
             </svg>
-            <h3 style={{ fontSize: '1.05rem', fontWeight: 600, letterSpacing: '0.02em', color: 'var(--text-primary)' }}>📐 Virtual Assembly Blueprint</h3>
+            <h3 className="blueprint-title">📐 Virtual Assembly Blueprint</h3>
           </div>
-          <span style={{ fontSize: '0.72rem', color: 'var(--primary)', background: 'rgba(79, 70, 229, 0.06)', padding: '0.2rem 0.5rem', borderRadius: '4px', textTransform: 'uppercase', fontWeight: 600 }}>
+          <span className="blueprint-live-badge">
             Live Assembly
           </span>
         </div>
@@ -1612,8 +1612,8 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
   const renderAnalyticsDashboard = () => {
     if (loadingAnalytics) {
       return (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '8rem 0', gap: '1rem' }}>
-          <div className="spinner" style={{ width: '40px', height: '40px', borderWidth: '3px' }}></div>
+        <div className="modal-body" style={{ alignItems: 'center', justifyContent: 'center', padding: '8rem 0' }}>
+          <div className="spinner"></div>
           <span style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Loading creator analytics...</span>
         </div>
       );
@@ -1622,7 +1622,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
     if (!analyticsData) {
       return (
         <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center' }}>
-          <h3 style={{ color: '#fff', margin: '0 0 0.5rem 0' }}>No Referral Data Available</h3>
+          <h3 style={{ margin: '0 0 0.5rem 0' }}>No Referral Data Available</h3>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
             Share your custom system rigs! Once other users click on the Amazon affiliate links in your shared rigs, your earnings statistics will populate here.
           </p>
@@ -1728,72 +1728,72 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
     };
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className="analytics-dashboard">
         
         {/* Intro Banner */}
-        <div className="glass-panel" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+        <div className="glass-panel analytics-banner">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-            <h2 style={{ fontSize: '1.75rem', fontWeight: 700, background: 'linear-gradient(135deg, #ffd700 0%, #ffa500 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0 }}>
+            <h2 className="analytics-banner-title">
               Rigsmith Creator Dashboard
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: 0 }}>
+            <p className="analytics-banner-desc">
               Monitor commission referrals generated from Amazon affiliate clicks on your custom configurations.
             </p>
           </div>
-          <button className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={fetchAnalytics}>
+          <button className="btn btn-secondary" onClick={fetchAnalytics}>
             🔄 Refresh Stats
           </button>
         </div>
 
         {/* Stats Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
-          <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', borderLeft: '4px solid #10b981' }}>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Total Commission Referred</span>
-            <span style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>${total_commission.toFixed(2)}</span>
-            <span style={{ fontSize: '0.78rem', color: 'var(--success)' }}>💸 2% Fixed rate applied</span>
+        <div className="stat-card-grid">
+          <div className="glass-panel stat-card green">
+            <span className="stat-card-label">Total Commission Referred</span>
+            <span className="stat-card-value">${total_commission.toFixed(2)}</span>
+            <span className="stat-card-detail" style={{ color: 'var(--success)' }}>💸 2% Fixed rate applied</span>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', borderLeft: '4px solid var(--accent)' }}>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Total Referred Clicks</span>
-            <span style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{total_clicks}</span>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>Clicks across shared build links</span>
+          <div className="glass-panel stat-card">
+            <span className="stat-card-label">Total Referred Clicks</span>
+            <span className="stat-card-value">{total_clicks}</span>
+            <span className="stat-card-detail">Clicks across shared build links</span>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', borderLeft: '4px solid #f59e0b' }}>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 600 }}>Est. Conversion Rate</span>
-            <span style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)' }}>{conversion_rate.toFixed(1)}%</span>
-            <span style={{ fontSize: '0.78rem', color: '#f59e0b' }}>Simulated target conversion</span>
+          <div className="glass-panel stat-card amber">
+            <span className="stat-card-label">Est. Conversion Rate</span>
+            <span className="stat-card-value">{conversion_rate.toFixed(1)}%</span>
+            <span className="stat-card-detail">Simulated target conversion</span>
           </div>
         </div>
 
         {/* Charts & Tables */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem' }}>
+        <div className="analytics-grid-split">
           
-          <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 style={{ fontSize: '1.1rem', margin: 0, fontWeight: 600, color: 'var(--text-primary)' }}>
+          <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3 className="comp-title" style={{ margin: 0 }}>
               30-Day Referral Performance
             </h3>
-            <div style={{ background: '#f8fafc', border: '1px solid var(--panel-border)', borderRadius: '12px', padding: '1.25rem 1rem 0.5rem 0.5rem', width: '100%' }}>
+            <div className="chart-wrapper">
               {renderCommissionsChart()}
             </div>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <h3 style={{ fontSize: '1.1rem', margin: 0, fontWeight: 600, color: 'var(--text-primary)' }}>
+          <div className="glass-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <h3 className="comp-title" style={{ margin: 0 }}>
               Top Referral Components
             </h3>
             
             {top_parts.length === 0 ? (
-              <div style={{ padding: '3rem 0', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.9rem', fontStyle: 'italic' }}>
+              <div className="slot-empty" style={{ padding: '3rem 0', textAlign: 'center' }}>
                 No component referrals logged yet.
               </div>
             ) : (
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.88rem' }}>
                 <thead>
-                  <tr style={{ borderBottom: '1px solid var(--panel-border)', color: 'var(--text-muted)' }}>
-                    <th style={{ textAlign: 'left', padding: '0.5rem 0.25rem', fontWeight: 600 }}>Component Name</th>
-                    <th style={{ textAlign: 'center', padding: '0.5rem', fontWeight: 600 }}>Clicks</th>
-                    <th style={{ textAlign: 'right', padding: '0.5rem 0.25rem', fontWeight: 600 }}>Commission</th>
+                  <tr style={{ borderBottom: '1px solid var(--panel-border)' }}>
+                    <th style={{ textAlign: 'left', padding: '0.5rem 0.25rem' }}>Component Name</th>
+                    <th style={{ textAlign: 'center', padding: '0.5rem' }}>Clicks</th>
+                    <th style={{ textAlign: 'right', padding: '0.5rem 0.25rem' }}>Commission</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1928,22 +1928,17 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
     }
 
     return (
-      <div className="compare-dashboard" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <div className="compare-dashboard">
         <div className="glass-panel" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: 700, background: 'linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0 }}>
+          <h2 className="analytics-banner-title">
             Rig Comparison Board
           </h2>
-          <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '0.95rem', lineHeight: '1.6' }}>
+          <p className="analytics-banner-desc" style={{ maxWidth: '600px', margin: '0 auto' }}>
             Select up to three saved or community configurations side-by-side to compare gaming performance, budget metrics, and component specs.
           </p>
         </div>
 
-        <div className="compare-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.5rem',
-          alignItems: 'start'
-        }}>
+        <div className="compare-grid">
           {rigs.map((rig, colIdx) => {
             const setRig = setRigs[colIdx];
             const isBestValue = bestValueIndex === colIdx;
@@ -1951,45 +1946,21 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             return (
               <div 
                 key={colIdx} 
-                className="glass-panel compare-column" 
-                style={{ 
-                  padding: '1.5rem', 
-                  display: 'flex', 
-                  flexDirection: 'column', 
-                  gap: '1.5rem',
-                  border: isBestValue ? '2px solid rgba(16, 185, 129, 0.4)' : '1px solid var(--panel-border)',
-                  boxShadow: isBestValue ? '0 0 15px rgba(16, 185, 129, 0.15)' : 'none',
-                  position: 'relative',
-                  transition: 'all 0.3s ease'
-                }}
+                className={`glass-panel compare-column ${isBestValue ? 'best-value' : ''}`}
               >
                 {isBestValue && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '-12px',
-                    right: '20px',
-                    background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                    color: '#fff',
-                    padding: '0.2rem 0.65rem',
-                    borderRadius: '20px',
-                    fontSize: '0.7rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.5px',
-                    boxShadow: '0 4px 10px rgba(16, 185, 129, 0.3)'
-                  }}>
+                  <div className="best-value-badge">
                     🌟 Best Value
                   </div>
                 )}
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-                  <label style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
+                <div className="compare-column-title-group">
+                  <label className="compare-column-num">
                     Compare Rig #{colIdx + 1}
                   </label>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <div className="compare-select-wrapper">
                     <select 
-                      className="modal-search" 
-                      style={{ flexGrow: 1, padding: '0.55rem 0.75rem', margin: 0, fontSize: '0.88rem', background: '#f1f5f9', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-primary)' }}
+                      className="compare-select"
                       value={rig ? rig.id : ''}
                       onChange={(e) => {
                         const selected = allBuilds.find(b => b.id === parseInt(e.target.value));
@@ -2003,8 +1974,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                     </select>
                     {rig && (
                       <button 
-                        className="btn btn-secondary" 
-                        style={{ padding: '0.25rem 0.6rem', fontSize: '0.8rem', height: '35px', cursor: 'pointer' }}
+                        className="btn btn-secondary"
                         onClick={() => setRig(null)}
                       >
                         Clear
@@ -2015,18 +1985,18 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
                 {rig ? (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                    <div style={{ textAlign: 'center', borderBottom: '1px solid var(--panel-border)', paddingBottom: '1rem' }}>
-                      <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.25rem', color: 'var(--text-primary)' }}>{rig.name}</h3>
-                      <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--accent)' }}>
+                    <div className="compare-header-details">
+                      <h3 className="compare-rig-name">{rig.name}</h3>
+                      <div className="compare-rig-price">
                         ${getBuildPrice(rig)}
                       </div>
                       {bestValueIndex !== -1 && !isBestValue && (
-                        <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                        <div className="compare-rig-price-diff">
                           +${(getBuildPrice(rig) - getBuildPrice(rigs[bestValueIndex])).toFixed(2)} price difference
                         </div>
                       )}
                       {isBestValue && (
-                        <div style={{ fontSize: '0.78rem', color: 'var(--success)', marginTop: '0.25rem', fontWeight: 600 }}>
+                        <div className="compare-rig-price-saved">
                           Save money with this configuration!
                         </div>
                       )}
@@ -2045,60 +2015,60 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                       {checkBuildCompatibility(rig) ? '✓ System Fully Compatible' : '⚠️ Compatibility Warnings Found'}
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                      <h4 style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Gaming FPS Performance</h4>
+                    <div className="optimizer-list">
+                      <h4 className="compare-section-title">Gaming FPS Performance</h4>
                       
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
-                          <span style={{ color: 'var(--text-secondary)' }}>1080p Resolution</span>
-                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{getBuildFpsEstimate(rig, '1080p')} FPS</span>
+                      <div className="compare-fps-bar-group">
+                        <div className="compare-fps-label-row">
+                          <span>1080p Resolution</span>
+                          <span>{getBuildFpsEstimate(rig, '1080p')} FPS</span>
                         </div>
-                        <div style={{ height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden' }}>
-                          <div style={{ height: '100%', width: `${Math.min(100, (getBuildFpsEstimate(rig, '1080p') / 240) * 100)}%`, background: 'var(--accent)', borderRadius: '3px' }}></div>
-                        </div>
-                      </div>
- 
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
-                          <span style={{ color: 'var(--text-secondary)' }}>1440p Resolution</span>
-                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{getBuildFpsEstimate(rig, '1440p')} FPS</span>
-                        </div>
-                        <div style={{ height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden' }}>
-                          <div style={{ height: '100%', width: `${Math.min(100, (getBuildFpsEstimate(rig, '1440p') / 240) * 100)}%`, background: 'var(--accent)', borderRadius: '3px' }}></div>
+                        <div className="compare-fps-bar-bg">
+                          <div className="compare-fps-bar-progress" style={{ width: `${Math.min(100, (getBuildFpsEstimate(rig, '1080p') / 240) * 100)}%` }}></div>
                         </div>
                       </div>
  
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
-                          <span style={{ color: 'var(--text-secondary)' }}>4K Ultra HD</span>
-                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{getBuildFpsEstimate(rig, '4k')} FPS</span>
+                      <div className="compare-fps-bar-group">
+                        <div className="compare-fps-label-row">
+                          <span>1440p Resolution</span>
+                          <span>{getBuildFpsEstimate(rig, '1440p')} FPS</span>
                         </div>
-                        <div style={{ height: '6px', background: '#e2e8f0', borderRadius: '3px', overflow: 'hidden' }}>
-                          <div style={{ height: '100%', width: `${Math.min(100, (getBuildFpsEstimate(rig, '4k') / 240) * 100)}%`, background: 'var(--accent)', borderRadius: '3px' }}></div>
+                        <div className="compare-fps-bar-bg">
+                          <div className="compare-fps-bar-progress" style={{ width: `${Math.min(100, (getBuildFpsEstimate(rig, '1440p') / 240) * 100)}%` }}></div>
+                        </div>
+                      </div>
+ 
+                      <div className="compare-fps-bar-group">
+                        <div className="compare-fps-label-row">
+                          <span>4K Ultra HD</span>
+                          <span>{getBuildFpsEstimate(rig, '4k')} FPS</span>
+                        </div>
+                        <div className="compare-fps-bar-bg">
+                          <div className="compare-fps-bar-progress" style={{ width: `${Math.min(100, (getBuildFpsEstimate(rig, '4k') / 240) * 100)}%` }}></div>
                         </div>
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
-                      <h4 style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '0.25rem' }}>Component Specifications</h4>
+                    <div className="compare-specs-section" style={{ borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
+                      <h4 className="compare-section-title">Component Specifications</h4>
                       
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', padding: '0.25rem 0' }}>
-                        <span style={{ color: 'var(--text-secondary)' }}>CPU:</span>
-                        <span style={{ fontWeight: 500, color: 'var(--text-primary)', textAlign: 'right', maxWidth: '200px' }}>
+                      <div className="compare-spec-row">
+                        <span className="compare-spec-label">CPU:</span>
+                        <span className="compare-spec-value">
                           {rig.cpu ? `${rig.cpu.brand} ${rig.cpu.name} (${rig.cpu.core_count || 8}C)` : 'Not selected'}
                         </span>
                       </div>
 
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', padding: '0.25rem 0' }}>
-                        <span style={{ color: 'var(--text-secondary)' }}>Motherboard:</span>
-                        <span style={{ fontWeight: 500, color: 'var(--text-primary)', textAlign: 'right', maxWidth: '200px' }}>
+                      <div className="compare-spec-row">
+                        <span className="compare-spec-label">Motherboard:</span>
+                        <span className="compare-spec-value">
                           {rig.motherboard ? `${rig.motherboard.name} (${rig.motherboard.form_factor}, ${rig.motherboard.memory_slots || 4} slots)` : 'Not selected'}
                         </span>
                       </div>
 
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', padding: '0.25rem 0' }}>
-                        <span style={{ color: 'var(--text-secondary)' }}>Memory (RAM):</span>
-                        <span style={{ fontWeight: 500, color: 'var(--text-primary)', textAlign: 'right' }}>
+                      <div className="compare-spec-row">
+                        <span className="compare-spec-label">Memory (RAM):</span>
+                        <span className="compare-spec-value">
                           {rig.ram ? `${rig.ram.capacity_gb}GB ${rig.ram.ram_type}` : 'Not selected'}
                         </span>
                       </div>
@@ -2110,16 +2080,16 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                         </span>
                       </div>
 
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', padding: '0.25rem 0' }}>
-                        <span style={{ color: 'var(--text-secondary)' }}>Power Supply:</span>
-                        <span style={{ fontWeight: 500, color: 'var(--text-primary)', textAlign: 'right' }}>
+                      <div className="compare-spec-row">
+                        <span className="compare-spec-label">Power Supply:</span>
+                        <span className="compare-spec-value">
                           {rig.powersupply ? `${rig.powersupply.wattage}W` : 'Not selected'}
                         </span>
                       </div>
 
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', padding: '0.25rem 0' }}>
-                        <span style={{ color: 'var(--text-secondary)' }}>Chassis Case:</span>
-                        <span style={{ fontWeight: 500, color: 'var(--text-primary)', textAlign: 'right', maxWidth: '200px' }}>
+                      <div className="compare-spec-row">
+                        <span className="compare-spec-label">Chassis Case:</span>
+                        <span className="compare-spec-value">
                           {rig.case ? `${rig.case.brand} ${rig.case.name} (${rig.case.color || 'Black'}, ${rig.case.side_panel || 'Tempered Glass'})` : 'Not selected'}
                         </span>
                       </div>
@@ -2162,9 +2132,9 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           </h1>
           <p>Enforce strict physical & electrical rules for your custom PC build</p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div className="budget-input-wrapper">
           {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className="budget-input-wrapper">
               <span className="user-welcome" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
                 Hello, <strong style={{ color: 'var(--accent)' }}>{user.username}</strong>
                 {isPro && (
@@ -2186,7 +2156,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <button className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }} onClick={logoutUser}>Logout</button>
             </div>
           ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <div className="budget-input-wrapper">
               {isPro && (
                 <span style={{
                   background: 'linear-gradient(135deg, #ffd700 0%, #ffa500 100%)',
@@ -2202,12 +2172,12 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   GUEST PRO
                 </span>
               )}
-              <button className="btn btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }} onClick={() => { setAuthError(null); setAuthModalOpen(true); setAuthMode('login'); }}>
+              <button className="btn btn-primary btn-sm" onClick={() => { setAuthError(null); setAuthModalOpen(true); setAuthMode('login'); }}>
                 Sign In / Register
               </button>
             </div>
           )}
-          <button className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }} onClick={clearBuild}>Reset Workstation</button>
+          <button className="btn btn-secondary btn-sm" onClick={clearBuild}>Reset Workstation</button>
         </div>
       </header>
  
@@ -2276,8 +2246,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 </div>
                 {totalPrice > 0 && (
                   <button 
-                    className="btn btn-gold"
-                    style={{ padding: '0.85rem 1.25rem' }} 
+                    className="btn btn-gold" 
                     onClick={() => {
                       const allPartsSelected = draftBuild.cpu && draftBuild.motherboard && draftBuild.ram && draftBuild.gpu && draftBuild.powersupply && draftBuild.case;
                       if (!allPartsSelected) {
@@ -2319,8 +2288,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   Share Rig
                 </button>
                 <button 
-                  className="btn btn-secondary" 
-                  style={{ background: 'rgba(0, 229, 255, 0.05)', borderColor: 'rgba(0, 229, 255, 0.15)' }}
+                  className="btn btn-secondary"
                   onClick={() => {
                     if (!isPro) {
                       setProModalOpen(true);
@@ -2355,36 +2323,27 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
           {/* Smart Budget Assistant */}
           <div className="glass-panel budget-assistant-panel">
-            <div className="budget-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" style={{ color: 'var(--warning)' }}>
+            <div className="budget-header">
+              <div className="budget-title">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" className="rule-icon warning">
                   <line x1="12" y1="1" x2="12" y2="23"/>
                   <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                 </svg>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Budget Assistant</h3>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div className="budget-input-wrapper">
                 <span style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>Target Budget:</span>
                 <input 
                   type="number" 
                   value={targetBudget}
                   onChange={(e) => setTargetBudget(Math.max(0, parseInt(e.target.value) || 0))}
-                  style={{
-                    width: '90px',
-                    padding: '0.35rem 0.5rem',
-                    background: '#ffffff',
-                    border: '1px solid var(--panel-border)',
-                    borderRadius: '6px',
-                    color: 'var(--text-primary)',
-                    textAlign: 'center',
-                    fontWeight: 600
-                  }}
+                  className="budget-input"
                 />
               </div>
             </div>
 
             {/* Budget Slider */}
-            <div style={{ marginBottom: '1.25rem' }}>
+            <div className="budget-slider-wrapper">
               <input 
                 type="range" 
                 min="400" 
@@ -2393,14 +2352,13 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 value={targetBudget} 
                 onChange={(e) => setTargetBudget(parseInt(e.target.value))}
                 className="budget-slider"
-                style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--primary)' }}
               />
             </div>
 
             {/* Budget Meter (Progress bar) */}
             {targetBudget > 0 && (
-              <div style={{ marginBottom: '1.5rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.35rem', fontWeight: 500 }}>
+              <div className="budget-meter-container">
+                <div className="budget-meter-labels">
                   <span style={{ color: 'var(--text-secondary)' }}>Current Cost: ${totalPrice.toFixed(2)}</span>
                   {totalPrice <= targetBudget ? (
                     <span style={{ color: 'var(--success)' }}>
@@ -2412,19 +2370,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                     </span>
                   )}
                 </div>
-                <div style={{ width: '100%', height: '10px', background: '#e4e4e7', borderRadius: '5px', overflow: 'hidden', border: '1px solid var(--panel-border)' }}>
+                <div className="budget-meter-bar">
                   <div 
+                    className={`budget-meter-progress ${totalPrice <= targetBudget ? 'success' : 'danger'}`}
                     style={{
-                      width: `${Math.min(100, (totalPrice / targetBudget) * 100)}%`,
-                      height: '100%',
-                      background: totalPrice <= targetBudget 
-                        ? 'linear-gradient(90deg, #6366f1, #10b981)' 
-                        : 'linear-gradient(90deg, #f59e0b, #f43f5e)',
-                      borderRadius: '5px',
-                      transition: 'width 0.3s ease-out',
-                      boxShadow: totalPrice <= targetBudget
-                        ? '0 0 10px rgba(16, 185, 129, 0.4)'
-                        : '0 0 10px rgba(244, 63, 94, 0.4)'
+                      width: `${Math.min(100, (totalPrice / targetBudget) * 100)}%`
                     }}
                   />
                 </div>
@@ -2432,28 +2382,25 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             )}
 
             {/* Quick Presets */}
-            <div style={{ borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
-              <span style={{ display: 'block', fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
+            <div className="preset-templates-row">
+              <span className="preset-title">
                 Quick load rig templates
               </span>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <div className="preset-buttons">
                 <button 
-                  className="btn btn-secondary" 
-                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', flexGrow: 1 }}
+                  className="btn btn-secondary preset-card-btn"
                   onClick={() => loadPresetTemplate('budget')}
                 >
                   Value Rig (~$500)
                 </button>
                 <button 
-                  className="btn btn-secondary" 
-                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', flexGrow: 1 }}
+                  className="btn btn-secondary preset-card-btn"
                   onClick={() => loadPresetTemplate('mid')}
                 >
                   Sweet Spot (~$1300)
                 </button>
                 <button 
-                  className="btn btn-secondary" 
-                  style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', flexGrow: 1 }}
+                  className="btn btn-secondary preset-card-btn"
                   onClick={() => loadPresetTemplate('high')}
                 >
                   Ultimate Beast (~$3200)
@@ -2464,40 +2411,25 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
           {/* Smart Rig Optimizer */}
           {getSmartSuggestions().length > 0 && (
-            <div className="glass-panel optimizer-panel" style={{ marginTop: '0rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" style={{ color: 'var(--primary)' }}>
+            <div className="glass-panel optimizer-panel">
+              <div className="optimizer-title">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" className="rule-icon success">
                   <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                 </svg>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Smart Rig Optimizer</h3>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div className="optimizer-list">
                 {getSmartSuggestions().map((sug, idx) => (
                   <div 
                     key={idx} 
                     className={`optimizer-card ${sug.type}`}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      background: '#f8fafc',
-                      border: '1px solid var(--panel-border)',
-                      borderRadius: '10px',
-                      padding: '0.75rem 1rem',
-                      fontSize: '0.9rem',
-                      borderLeft: sug.type === 'upgrade' 
-                        ? '3px solid var(--primary)' 
-                        : sug.type === 'downgrade' 
-                        ? '3px solid var(--error)' 
-                        : '3px solid var(--success)'
-                    }}
+                    className={`optimizer-card ${sug.type}`}
                   >
-                    <span style={{ color: 'var(--text-primary)', flexGrow: 1, marginRight: '1rem', lineHeight: '1.3' }}>
+                    <span className="optimizer-message">
                       {sug.message}
                     </span>
                     <button 
-                      className="btn btn-secondary" 
-                      style={{ padding: '0.4rem 0.85rem', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
+                      className="btn btn-secondary btn-sm"
                       onClick={() => {
                         selectPart(sug.slot, sug.part);
                       }}
@@ -2513,7 +2445,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           {/* Compatibility Engine Summary */}
           <div className="glass-panel compatibility-panel">
             <div className="comp-header">
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Rig Compatibility Analyzer</h3>
+              <h3 className="comp-title">Rig Compatibility Analyzer</h3>
               {getCompStatusBadge()}
             </div>
             
@@ -2522,7 +2454,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <div className={getRuleItemClass(compatibility.checks.socket.status)}>
                 {getRuleIcon(compatibility.checks.socket.status)}
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>CPU Socket Match</strong>
+                  <strong className="comp-rule-title">CPU Socket Match</strong>
                   <span>{compatibility.checks.socket.message}</span>
                 </div>
               </div>
@@ -2531,7 +2463,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <div className={getRuleItemClass(compatibility.checks.ramType.status)}>
                 {getRuleIcon(compatibility.checks.ramType.status)}
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>RAM Standard (DDR) Match</strong>
+                  <strong className="comp-rule-title">RAM Standard (DDR) Match</strong>
                   <span>{compatibility.checks.ramType.message}</span>
                 </div>
               </div>
@@ -2540,7 +2472,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <div className={getRuleItemClass(compatibility.checks.wattage.status)}>
                 {getRuleIcon(compatibility.checks.wattage.status)}
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>Wattage Overhead Capacity</strong>
+                  <strong className="comp-rule-title">Wattage Overhead Capacity</strong>
                   <span>{compatibility.checks.wattage.message}</span>
                 </div>
               </div>
@@ -2549,7 +2481,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <div className={getRuleItemClass(compatibility.checks.caseMobo.status)}>
                 {getRuleIcon(compatibility.checks.caseMobo.status)}
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>Case & Motherboard Form Factor</strong>
+                  <strong className="comp-rule-title">Case & Motherboard Form Factor</strong>
                   <span>{compatibility.checks.caseMobo.message}</span>
                 </div>
               </div>
@@ -2558,7 +2490,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <div className={getRuleItemClass(compatibility.checks.caseGpu.status)}>
                 {getRuleIcon(compatibility.checks.caseGpu.status)}
                 <div>
-                  <strong style={{ display: 'block', fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>GPU Clearance Space</strong>
+                  <strong className="comp-rule-title">GPU Clearance Space</strong>
                   <span>{compatibility.checks.caseGpu.message}</span>
                 </div>
               </div>
@@ -2567,31 +2499,31 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
           {/* Performance & Benchmarks Panel */}
           {draftBuild.gpu && (
-            <div className="glass-panel performance-panel" style={{ marginTop: '0rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" style={{ color: 'var(--primary)' }}>
+            <div className="glass-panel performance-panel">
+              <div className="performance-title">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" className="rule-icon success">
                   <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                 </svg>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 600 }}>Performance & Benchmarks</h3>
               </div>
 
               {/* FPS Gauges */}
-              <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.25rem' }}>
-                <div style={{ flex: 1, background: '#ffffff', border: '1px solid var(--panel-border)', borderRadius: '10px', padding: '0.75rem', textAlign: 'center' }}>
-                  <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>1080p Ultra</span>
-                  <span style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--success)' }}>
+              <div className="fps-grid">
+                <div className="fps-card">
+                  <span className="fps-card-label">1080p Ultra</span>
+                  <span className="fps-card-value green">
                     {Math.round(getFpsEstimate('1080p'))} FPS
                   </span>
                 </div>
-                <div style={{ flex: 1, background: '#ffffff', border: '1px solid var(--panel-border)', borderRadius: '10px', padding: '0.75rem', textAlign: 'center' }}>
-                  <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>1440p Ultra</span>
-                  <span style={{ fontSize: '1.4rem', fontWeight: 700, color: '#818cf8' }}>
+                <div className="fps-card">
+                  <span className="fps-card-label">1440p Ultra</span>
+                  <span className="fps-card-value indigo">
                     {Math.round(getFpsEstimate('1440p'))} FPS
                   </span>
                 </div>
-                <div style={{ flex: 1, background: '#ffffff', border: '1px solid var(--panel-border)', borderRadius: '10px', padding: '0.75rem', textAlign: 'center' }}>
-                  <span style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.25rem' }}>4K Ultra</span>
-                  <span style={{ fontSize: '1.4rem', fontWeight: 700, color: 'var(--warning)' }}>
+                <div className="fps-card">
+                  <span className="fps-card-label">4K Ultra</span>
+                  <span className="fps-card-value amber">
                     {Math.round(getFpsEstimate('4K'))} FPS
                   </span>
                 </div>
@@ -2599,7 +2531,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
               {/* Bottleneck Analyzer */}
               {draftBuild.cpu && (
-                <div style={{ borderTop: '1px solid var(--panel-border)', paddingTop: '1rem' }}>
+                <div className="preset-templates-row">
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: '0.5rem' }}>
                     <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}>Bottleneck Calculator</span>
                     <span style={{ 
@@ -2609,7 +2541,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                       {getBottleneckAnalysis().percentage}% {getBottleneckAnalysis().type}
                     </span>
                   </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+                  <p className="bottleneck-text">
                     {getBottleneckAnalysis().message}
                   </p>
                 </div>
@@ -2619,10 +2551,10 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
           {/* Price Analytics Panel */}
           {(draftBuild.gpu || draftBuild.cpu) && (
-            <div className="glass-panel price-analytics-panel" style={{ marginTop: '0rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" style={{ color: 'var(--success)' }}>
+            <div className="glass-panel price-analytics-panel">
+              <div className="price-analytics-header">
+                <div className="price-analytics-title">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="22" height="22" className="rule-icon success">
                     <line x1="18" y1="20" x2="18" y2="10"/>
                     <line x1="12" y1="20" x2="12" y2="4"/>
                     <line x1="6" y1="20" x2="6" y2="14"/>
@@ -2632,33 +2564,15 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 
                 {/* Part selector toggle */}
                 {draftBuild.cpu && draftBuild.gpu && (
-                  <div style={{ display: 'flex', gap: '0.25rem', background: '#f4f4f5', border: '1px solid var(--panel-border)', padding: '0.2rem', borderRadius: '6px' }}>
+                  <div className="chart-part-toggle">
                     <button 
-                      style={{
-                        background: chartPart === 'cpu' ? 'var(--primary)' : 'transparent',
-                        border: 'none',
-                        color: chartPart === 'cpu' ? '#ffffff' : 'var(--text-secondary)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                      }}
+                      className={`chart-toggle-btn ${chartPart === 'cpu' ? 'active' : ''}`}
                       onClick={() => setChartPart('cpu')}
                     >
                       CPU
                     </button>
                     <button 
-                      style={{
-                        background: chartPart === 'gpu' ? 'var(--primary)' : 'transparent',
-                        border: 'none',
-                        color: chartPart === 'gpu' ? '#ffffff' : 'var(--text-secondary)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                      }}
+                      className={`chart-toggle-btn ${chartPart === 'gpu' ? 'active' : ''}`}
                       onClick={() => setChartPart('gpu')}
                     >
                       GPU
@@ -2674,17 +2588,17 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 const points = generatePricePoints(activePart.price);
                 return (
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                    <div className="price-trend-desc">
                       30-Day Trend for <strong>{activePart.brand || ''} {activePart.name}</strong> (Current: <strong style={{ color: 'var(--success)' }}>${activePart.price}</strong>)
                     </div>
 
-                    <div style={{ background: '#ffffff', border: '1px solid var(--panel-border)', borderRadius: '12px', padding: '1rem', width: '100%' }}>
+                    <div className="chart-wrapper">
                       {renderPriceChart(points)}
                     </div>
 
                     {/* Price Alert Form */}
-                    <div style={{ borderTop: '1px solid var(--panel-border)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff' }}>
+                    <div className="alert-section">
+                      <div className="alert-title">
                         🔔 Set Price Drop Notification
                       </div>
                       
@@ -2693,7 +2607,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                           ✓ Price drop alert registered for <strong>{alertEmail}</strong> when cost drops below <strong>${alertPrice}</strong>!
                         </div>
                       ) : (
-                        <form onSubmit={async (e) => {
+                        <form className="alert-form-grid" onSubmit={async (e) => {
                           e.preventDefault();
                           if (!isPro) {
                             setProModalOpen(true);
@@ -2726,12 +2640,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                             }
                           }
                         }} style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', flex: 1, minWidth: '110px' }}>
-                            <label style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>Target Price ($)</label>
+                          <div className="form-group-alert alert-input-price">
+                            <label className="alert-label">Target Price ($)</label>
                             <input 
                               type="number" 
-                              className="modal-search" 
-                              style={{ width: '100%', padding: '0.55rem 0.75rem', margin: 0, fontSize: '0.85rem' }}
+                              className="alert-input"
                               value={alertPrice}
                               onChange={(e) => setAlertPrice(e.target.value)}
                               placeholder="e.g. 350"
@@ -2739,12 +2652,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                             />
                           </div>
                           
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', flex: 2, minWidth: '180px' }}>
-                            <label style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>Email Address</label>
+                          <div className="form-group-alert alert-input-email">
+                            <label className="alert-label">Email Address</label>
                             <input 
                               type="email" 
-                              className="modal-search" 
-                              style={{ width: '100%', padding: '0.55rem 0.75rem', margin: 0, fontSize: '0.85rem' }}
+                              className="alert-input"
                               value={alertEmail}
                               onChange={(e) => setAlertEmail(e.target.value)}
                               placeholder="alert@example.com"
@@ -2755,7 +2667,6 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                           <button 
                             type="submit" 
                             className="btn btn-primary"
-                            style={{ padding: '0.55rem 1rem', fontSize: '0.85rem', height: '37px', display: 'flex', alignItems: 'center' }}
                           >
                             Set Alert
                           </button>
@@ -3108,7 +3019,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                         <span className="build-item-parts-count">{partsCount}/5 components selected</span>
                       </div>
                       <div className="build-item-actions">
-                        <button className="btn btn-secondary" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }} onClick={() => loadBuild(build)}>
+                        <button className="btn btn-secondary" onClick={() => loadBuild(build)}>
                           Load
                         </button>
                         <button className="btn-icon btn-icon-danger" onClick={() => deleteBuild(build.id)}>
@@ -3123,9 +3034,9 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
           </div>
 
           {/* Prebuilt Systems Suggestion panel */}
-          <div className="glass-panel prebuilt-panel" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxHeight: '480px', overflow: 'hidden' }}>
-            <h2 className="sidebar-title" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', borderBottom: '1px solid var(--panel-border)', paddingBottom: '0.75rem', marginBottom: '0' }}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" style={{ color: 'var(--success)' }}>
+          <div className="glass-panel prebuilt-panel">
+            <h2 className="sidebar-title">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" className="rule-icon success">
                 <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
                 <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
                 <line x1="6" y1="6" x2="6.01" y2="6"/>
@@ -3141,29 +3052,20 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             {loadingPrebuilts ? (
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Loading prebuilts...</p>
             ) : (
-              <div className="prebuilts-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', overflowY: 'auto', maxHeight: '350px', paddingRight: '0.2rem' }}>
+              <div className="builds-list">
                 {prebuilts
                   .filter(pc => parseFloat(pc.price) <= targetBudget + 150)
                   .map(pc => (
                     <div 
                       key={pc.id} 
                       className="prebuilt-card"
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.02)',
-                        border: '1px solid var(--panel-border)',
-                        borderRadius: '12px',
-                        padding: '1rem',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.5rem',
-                        transition: 'var(--transition)'
-                      }}
+                      className="prebuilt-card"
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontWeight: 600, fontSize: '0.92rem', color: '#fff' }}>{pc.brand} {pc.name}</span>
-                        <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--success)' }}>${pc.price}</span>
+                        <span className="part-select-name">{pc.brand} {pc.name}</span>
+                        <span className="part-select-price">${pc.price}</span>
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.25rem', borderLeft: '2px solid rgba(255,255,255,0.05)', paddingLeft: '0.5rem' }}>
+                      <div className="part-select-specs" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
                         <span>🖥️ <strong>CPU:</strong> {pc.cpu_details}</span>
                         <span>🎮 <strong>GPU:</strong> {pc.gpu_details}</span>
                         <span>⚡ <strong>RAM:</strong> {pc.ram_details}</span>
@@ -3173,8 +3075,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                           href={pc.affiliate_url} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="btn btn-affiliate" 
-                          style={{ width: '100%', padding: '0.45rem', fontSize: '0.82rem', marginTop: '0.25rem' }}
+                          className="btn btn-affiliate"
                         >
                           Buy Prebuilt PC
                         </a>
@@ -3207,14 +3108,14 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             <h2 style={{ fontSize: '1.75rem', fontWeight: 700, background: 'linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0 }}>
               Community Rig Showcase
             </h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto', fontSize: '0.95rem', lineHeight: '1.6' }}>
+            <p className="analytics-banner-desc" style={{ maxWidth: '600px', margin: '0 auto' }}>
               Explore custom system configurations published by creators worldwide. Review their compatibility benchmarks, physical clearances, or load them to customize.
             </p>
           </div>
 
           {loadingShowcase ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6rem 0', gap: '1rem' }}>
-              <div className="spinner" style={{ width: '40px', height: '40px', borderWidth: '3px' }}></div>
+              <div className="spinner"></div>
               <span style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Retrieving builds catalog...</span>
             </div>
           ) : showcaseBuilds.length === 0 ? (
@@ -3248,91 +3149,64 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 const isOwner = !build.user || (user && build.user === user.id);
  
                 return (
-                  <div key={build.id} className={`glass-panel showcase-card animate-fade-in-up delay-${(index % 8) + 1}`} style={{
-                    padding: '1.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.25rem',
-                    position: 'relative',
-                    height: '100%',
-                    background: '#ffffff',
-                    border: '1px solid var(--panel-border)',
-                    borderRadius: '16px'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
+                  <div key={build.id} className={`glass-panel showcase-card animate-fade-in-up delay-${(index % 8) + 1}`}>
+                    <div className="showcase-card-header">
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', overflow: 'hidden' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        <h3 className="showcase-rig-title">
                           {build.name}
                         </h3>
-                        <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                        <span className="showcase-author-badge">
                           👤 Creator: <strong style={{ color: 'var(--primary)' }}>{build.username || 'Guest'}</strong>
                         </span>
                       </div>
-                      <div style={{
-                        fontSize: '1.15rem',
-                        fontWeight: 700,
-                        color: 'var(--primary)',
-                        background: 'var(--primary-glow)',
-                        padding: '0.2rem 0.6rem',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(79, 70, 229, 0.15)'
-                      }}>
+                      <div className="part-select-price">
                         ${buildTotal.toFixed(2)}
                       </div>
                     </div>
  
-                    <div style={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.65rem',
-                      background: '#f8fafc',
-                      padding: '0.85rem',
-                      borderRadius: '10px',
-                      border: '1px solid var(--panel-border)',
-                      flexGrow: 1
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Processor:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    <div className="showcase-specs-list" style={{ flexGrow: 1 }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">CPU</span>
+                        <span className="showcase-spec-text">
                           {build.cpu ? `${build.cpu.brand} ${build.cpu.name}` : '—'}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Motherboard:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">Mobo</span>
+                        <span className="showcase-spec-text">
                           {build.motherboard ? build.motherboard.name : '—'}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Memory:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">RAM</span>
+                        <span className="showcase-spec-text">
                           {build.ram ? `${build.ram.name} (${build.ram.capacity_gb}GB)` : '—'}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Graphics:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">GPU</span>
+                        <span className="showcase-spec-text">
                           {build.gpu ? build.gpu.name : '—'}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Power Supply:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">PSU</span>
+                        <span className="showcase-spec-text">
                           {build.powersupply ? `${build.powersupply.name} (${build.powersupply.wattage}W)` : '—'}
                         </span>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', gap: '0.5rem' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Chassis Case:</span>
-                        <span style={{ color: 'var(--text-primary)', fontWeight: 500, textAlign: 'right', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="showcase-spec-item">
+                        <span className="spec-badge">Case</span>
+                        <span className="showcase-spec-text">
                           {build.case ? `${build.case.brand} ${build.case.name}` : '—'}
                         </span>
                       </div>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: 'auto' }}>
+                    <div className="showcase-card-footer" style={{ marginTop: 'auto' }}>
                       <button 
                         className="btn btn-secondary"
-                        style={{ flexGrow: 1, padding: '0.5rem 1rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.25rem' }}
+                        style={{ flexGrow: 1 }}
                         onClick={() => {
                           loadBuild(build);
                           setActiveTab('builder');
@@ -3343,25 +3217,8 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                       
                       {isOwner && (
                         <button 
-                          className="btn btn-secondary"
-                          style={{
-                            background: 'rgba(239, 68, 68, 0.08)',
-                            border: '1px solid rgba(239, 68, 68, 0.15)',
-                            color: '#f87171',
-                            padding: '0.5rem',
-                            borderRadius: '8px',
-                            cursor: 'pointer',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            transition: 'all 0.2s ease'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.15)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.08)';
-                          }}
+                          className="btn btn-danger"
+                          style={{ padding: '0.5rem' }}
                           onClick={() => {
                             if (window.confirm(`Are you sure you want to delete build "${build.name}"?`)) {
                               deleteBuild(build.id);
@@ -3426,7 +3283,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               </div>
 
               {/* Simulated Credit Card Form */}
-              <form onSubmit={async (e) => {
+              <form className="alert-form-grid" onSubmit={async (e) => {
                 e.preventDefault();
                 setPayingPro(true);
                 
@@ -3439,23 +3296,21 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 alert("Congratulations! You are now a Rigsmith Pro member! Unlimited build slots unlocked.");
               }} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                  <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Cardholder Name</label>
+                <div className="form-group-alert" style={{ width: '100%' }}>
+                  <label className="alert-label">Cardholder Name</label>
                   <input 
                     type="text" 
                     className="modal-search" 
-                    style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                     placeholder="John Doe"
                     required
                   />
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                  <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Card Number</label>
+                <div className="form-group-alert" style={{ width: '100%' }}>
+                  <label className="alert-label">Card Number</label>
                   <input 
                     type="text" 
                     className="modal-search" 
-                    style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                     value={cardNumber}
                     onChange={(e) => {
                       // format card number: groups of 4 digits
@@ -3468,13 +3323,12 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   />
                 </div>
 
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', flex: 1 }}>
-                    <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Expiration Date</label>
+                <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+                  <div className="form-group-alert" style={{ flex: 1 }}>
+                    <label className="alert-label">Expiration Date</label>
                     <input 
                       type="text" 
                       className="modal-search" 
-                      style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                       value={cardExpiry}
                       onChange={(e) => {
                         const val = e.target.value.replace(/\D/g, '').substring(0, 4);
@@ -3485,12 +3339,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                       required
                     />
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', flex: 1 }}>
-                    <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>CVC / CVV</label>
+                  <div className="form-group-alert" style={{ flex: 1 }}>
+                    <label className="alert-label">CVC / CVV</label>
                     <input 
                       type="password" 
                       className="modal-search" 
-                      style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                       value={cardCvc}
                       onChange={(e) => setCardCvc(e.target.value.replace(/\D/g, '').substring(0, 3))}
                       placeholder="123"
@@ -3542,7 +3395,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               <button className="btn-icon" onClick={() => setAuthModalOpen(false)}><CloseIcon /></button>
             </div>
             
-            <form onSubmit={async (e) => {
+            <form className="alert-form-grid" onSubmit={async (e) => {
               e.preventDefault();
               let success = false;
               if (authMode === 'login') {
@@ -3564,12 +3417,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 </div>
               )}
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Username</label>
+              <div className="form-group-alert" style={{ width: '100%' }}>
+                <label className="alert-label">Username</label>
                 <input 
                   type="text" 
                   className="modal-search" 
-                  style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                   value={authUsername}
                   onChange={(e) => setAuthUsername(e.target.value)}
                   placeholder="Enter username..."
@@ -3578,12 +3430,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               </div>
 
               {authMode === 'register' && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                  <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Email Address</label>
+                <div className="form-group-alert" style={{ width: '100%' }}>
+                  <label className="alert-label">Email Address</label>
                   <input 
                     type="email" 
                     className="modal-search" 
-                    style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                     value={authEmail}
                     onChange={(e) => setAuthEmail(e.target.value)}
                     placeholder="Enter email address..."
@@ -3591,12 +3442,11 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 </div>
               )}
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                <label style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Password</label>
+              <div className="form-group-alert" style={{ width: '100%' }}>
+                <label className="alert-label">Password</label>
                 <input 
                   type="password" 
                   className="modal-search" 
-                  style={{ width: '100%', padding: '0.65rem 0.85rem', margin: 0 }}
                   value={authPassword}
                   onChange={(e) => setAuthPassword(e.target.value)}
                   placeholder="Enter password..."
@@ -3608,7 +3458,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                 type="submit" 
                 className="btn btn-primary" 
                 disabled={authLoading}
-                style={{ width: '100%', marginTop: '0.5rem', display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0.65rem' }}
+                style={{ width: '100%', marginTop: '0.5rem' }}
               >
                 {authLoading ? <div className="spinner" style={{ width: '18px', height: '18px', borderWidth: '2px' }}></div> : (authMode === 'login' ? 'Sign In' : 'Sign Up')}
               </button>
@@ -3652,7 +3502,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             </div>
             
             {activeSlot === 'cpu' && (
-              <div style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
+              <div className="modal-filters-bar" style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>Brand:</span>
                   {['All', 'AMD', 'Intel'].map(brand => (
@@ -3685,7 +3535,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             )}
 
             {activeSlot === 'motherboard' && (
-              <div style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
+              <div className="modal-filters-bar" style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>RAM Slots:</span>
                   {['All', '2', '4'].map(slots => (
@@ -3718,7 +3568,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             )}
 
             {activeSlot === 'case' && (
-              <div style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
+              <div className="modal-filters-bar" style={{ display: 'flex', gap: '1.25rem', padding: '0.25rem 1.5rem 0.85rem 1.5rem', flexWrap: 'wrap', alignItems: 'center', background: '#f8fafc', borderBottom: '1px solid var(--panel-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                   <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>Color:</span>
                   {['All', 'Black', 'White', 'Silver'].map(color => (
@@ -3817,7 +3667,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                     type="text" 
                     readOnly 
                     value={getShareUrl()} 
-                    style={{ flexGrow: 1, padding: '0.6rem 0.85rem', background: '#f1f5f9', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-primary)', fontSize: '0.9rem' }}
+                    className="modal-search"
                   />
                   <button 
                     className="btn btn-primary" 
@@ -3855,7 +3705,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   readOnly 
                   value={getRedditMarkdown()} 
                   rows="4" 
-                  style={{ width: '100%', padding: '0.6rem 0.85rem', background: '#f1f5f9', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-primary)', fontSize: '0.8rem', fontFamily: 'monospace', resize: 'none' }}
+                  className="modal-search" style={{ height: '80px', fontFamily: 'monospace', resize: 'none' }}
                 />
               </div>
 
@@ -3881,7 +3731,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
                   readOnly 
                   value={getDiscordMarkdown()} 
                   rows="4" 
-                  style={{ width: '100%', padding: '0.6rem 0.85rem', background: '#f1f5f9', border: '1px solid var(--panel-border)', borderRadius: '8px', color: 'var(--text-primary)', fontSize: '0.8rem', fontFamily: 'monospace', resize: 'none' }}
+                  className="modal-search" style={{ height: '80px', fontFamily: 'monospace', resize: 'none' }}
                 />
               </div>
 
