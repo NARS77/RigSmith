@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Bell, ChartColumnIncreasing, Cpu, FolderKanban, GitCompareArrows, Search, UsersRound } from 'lucide-react';
 import { BuildContext } from './context/BuildContext';
 
 const API_BASE = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
@@ -2172,7 +2173,37 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
 
   return (
     <>
-      <div className="app-container">
+      <div className="app-shell">
+        <aside className="app-sidebar" aria-label="Primary navigation">
+          <button className="sidebar-brand" onClick={() => setActiveTab('builder')} aria-label="RigSmith home">
+            <span className="brand-mark">R</span>
+            <span>RIGSMITH</span>
+          </button>
+          <div className="sidebar-section-label">Workspace</div>
+          <nav className="sidebar-nav">
+            <button className={`sidebar-nav-item ${activeTab === 'builder' ? 'active' : ''}`} onClick={() => setActiveTab('builder')}>
+              <Cpu size={17} strokeWidth={1.8} aria-hidden="true" /> Build workstation
+            </button>
+            <button className="sidebar-nav-item" onClick={() => {
+              setActiveTab('builder');
+              window.setTimeout(() => document.getElementById('saved-rigs')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
+            }}>
+              <FolderKanban size={17} strokeWidth={1.8} aria-hidden="true" /> Saved builds
+            </button>
+            <button className={`sidebar-nav-item ${activeTab === 'compare' ? 'active' : ''}`} onClick={() => setActiveTab('compare')}>
+              <GitCompareArrows size={17} strokeWidth={1.8} aria-hidden="true" /> Compare rigs
+            </button>
+            <button className={`sidebar-nav-item ${activeTab === 'showcase' ? 'active' : ''}`} onClick={() => setActiveTab('showcase')}>
+              <UsersRound size={17} strokeWidth={1.8} aria-hidden="true" /> Community
+            </button>
+            <button className={`sidebar-nav-item ${activeTab === 'analytics' ? 'active' : ''}`} onClick={() => isPro ? setActiveTab('analytics') : setProModalOpen(true)}>
+              <ChartColumnIncreasing size={17} strokeWidth={1.8} aria-hidden="true" /> Analytics {!isPro && <span className="sidebar-pro">PRO</span>}
+            </button>
+          </nav>
+          <div className="sidebar-spacer" />
+          <div className="sidebar-status"><span></span> System status: online</div>
+        </aside>
+        <div className="app-container">
         {/* Header */}
         <header className="app-header">
           <div className="logo-section">
@@ -2181,7 +2212,12 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
             <span className="badge-mvp">MVP</span>
           </h1>
           <p>Enforce strict physical & electrical rules for your custom PC build</p>
-        </div>
+          </div>
+          <button className="command-search" type="button" onClick={() => handleOpenSelector('cpu')} aria-label="Search components">
+            <Search size={17} aria-hidden="true" />
+            <span>Search components</span>
+            <kbd>Ctrl K</kbd>
+          </button>
         <div className="budget-input-wrapper">
           {user ? (
             <div className="budget-input-wrapper">
@@ -2227,6 +2263,9 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
               </button>
             </div>
           )}
+          <button className="header-icon-button" type="button" aria-label="Price alerts" onClick={() => setChartPart('gpu')}>
+            <Bell size={17} aria-hidden="true" />
+          </button>
           <button className="btn btn-secondary btn-sm" onClick={clearBuild}>Reset Workstation</button>
         </div>
       </header>
@@ -3046,7 +3085,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
         <div className="sidebar-container" style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'sticky', top: '2rem' }}>
           
           {/* Saved System Rigs List */}
-          <div className="glass-panel sidebar-panel" style={{ position: 'relative', top: '0', maxHeight: '380px' }}>
+          <div id="saved-rigs" className="glass-panel sidebar-panel" style={{ position: 'relative', top: '0', maxHeight: '380px' }}>
             <h2 className="sidebar-title">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20" style={{ color: 'var(--primary)' }}>
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
@@ -3785,6 +3824,7 @@ ${casePart ? `* **Case**: ${casePart.name} ($${casePart.price})\n` : ''}✨ **To
         </div>
       )}
 
+    </div>
     </div>
 
     {/* Hidden Print Spec Sheet */}
